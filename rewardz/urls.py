@@ -1,4 +1,4 @@
-"""rewardzz URL Configuration
+"""rewardz URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -40,7 +40,6 @@ urlpatterns = [
    path('admin/', admin.site.urls),
    path("library/", include("library.urls")),
    path("api-auth", TokenObtainPairView.as_view()),
-   # path('api-auth/', include('rest_framework.urls')),
    re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
    re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
    re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),

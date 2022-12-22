@@ -1,0 +1,31 @@
+version: "3"
+services:
+
+  library_db:
+    image: "postgres:13"
+    container_name: library_db
+    environment:
+      - POSTGRES_USER=library_user
+      - POSTGRES_PASSWORD=passworddblibrary
+      - POSTGRES_DB=library
+
+  library_app:
+    container_name: library_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/code
+    depends_on:
+      - library_db
+#    ports:
+#      - 8000:8080
+
+  library_nginx:
+    image: nginx:latest
+    restart: always
+    container_name: library_nginx
+    volumes:
+      - ./nginx/conf:/etc/nginx/conf.d
+    ports:
+      - 8000:8000
