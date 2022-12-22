@@ -5,21 +5,21 @@ from rest_framework import status
 class MaxBorrowedReach(APIException):
     status_code = status.HTTP_400_BAD_REQUEST
     default_detail = {
-        "message": "This User have reach maximum limit to borrow books."
+        "message": "this user have reach maximum limit to borrow books"
     }
 
 
 class BookOutOfStock(APIException):
     status_code = status.HTTP_400_BAD_REQUEST
     default_detail = {
-        "message": "All book already borrowed"
+        "message": "all book already borrowed"
     }
 
 
 class BookAlreadyBorrowed(APIException):
     status_code = status.HTTP_400_BAD_REQUEST
     default_detail = {
-        "message": "Book Already Borrowed, Return it first or you can renew once"
+        "message": "book Already Borrowed, Return it first or you can renew once"
     }
 
 
