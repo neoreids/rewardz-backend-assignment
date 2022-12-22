@@ -1,0 +1,1 @@
+MAX_BORROW = 10
