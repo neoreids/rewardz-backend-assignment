@@ -83,12 +83,12 @@ WSGI_APPLICATION = 'rewardz.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": os.getenv("DB_ENGINE", "django.db.backends.sqlite3"),
-        "NAME": os.getenv("DB_NAME", "postgres"),
-        "USER": os.getenv("DB_USER", "postgres"),
-        "PASSWORD": os.getenv("DB_PASSWORD", "postgres"),
-        "HOST": os.getenv("DB_HOST", "postgres"),
-        "PORT": os.getenv("DB_PORT", 5432),
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "library",
+        "USER": "library_user",
+        "PASSWORD": "passworddblibrary",
+        "HOST": "library_db",
+        "PORT": 5432,
         "ATOMIC_REQUESTS": True,
         "TEST": {
             "NAME": "test_{}".format(os.getenv("DB_NAME")),
@@ -132,6 +132,13 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = (
+    BASE_DIR/'static',
+)
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -154,5 +161,3 @@ SIMPLE_JWT = {
     'ALGORITHM': 'HS256',
     'SIGNING_KEY': "Wr2SKw98yg",
 }
-
-

@@ -1,6 +1,7 @@
 run:
 	docker-compose build
 	docker-compose up -d
+	docker exec library_app python manage.py collectstatic --noinput --clear
 
 migrate:
 	docker exec library_app python manage.py migrate
