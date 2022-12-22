@@ -1,0 +1,70 @@
+### login
+### username : librarian / student
+### password : librarian / student
+POST http://localhost:8000/api-auth
+
+{
+"username": "librarian",
+"password": "librarian"
+}
+
+
+### Get list book endpoint
+### query params title for search by title and autho to search by author
+GET http://localhost:8000/library/books?title=minute
+
+
+### Borrow book endpoint
+### payload user id and list id of book
+### should logged in as librarian
+POST http://localhost:8000/library/borrow
+Authorization: Bearer <token>
+
+
+{
+"user_id": 2,
+"books": [1,2]
+}
+
+
+### renew book endpoint
+### payload user id and list id of book to renew
+### should logged in as librarian
+POST http://localhost:8000/library/renew
+Authorization: Bearer <token>
+
+
+{
+"user_id": 2,
+"books": [1,2]
+}
+
+
+### return book endpoint
+### payload user id and list id of book to return books
+### should logged in as librarian
+POST http://localhost:8000/library/return
+Authorization: Bearer <token>
+
+
+{
+"user_id": 2,
+"books": [1,2]
+}
+
+
+
+### list user endpoint
+### should logged in as librarian
+GET http://localhost:8000/library/student-list
+Authorization: Bearer <token>
+
+
+### get list borrow book by student side
+### should be logged in by student account
+GET http://localhost:8000/library/student/borrow-list
+Authorization: Bearer <token>
+
+
+
+
