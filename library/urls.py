@@ -5,7 +5,7 @@ from library.views import (
     BorrowBookView,
     StudentBorrowListView,
     RenewBookView,
-    ReturnBooksView
+    ReturnBooksView, StudentListView
 )
 
 app_name = "library"
@@ -14,5 +14,6 @@ urlpatterns = [
     path("borrow", BorrowBookView.as_view()),
     path("student/borrow-list", StudentBorrowListView.as_view()),
     path("renew", RenewBookView.as_view()),
-    path("return", ReturnBooksView.as_view())
+    path("return", ReturnBooksView.as_view()),
+    path("student-list", StudentListView.as_view())
 ]

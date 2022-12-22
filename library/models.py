@@ -36,7 +36,7 @@ class Books(models.Model):
 
 class BorrowedBooks(models.Model):
     book = models.ForeignKey(Books, null=True, on_delete=models.SET_NULL)
-    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name="user_borrowed")
     is_renewed = models.BooleanField(default=False)
     is_returned = models.BooleanField(default=False)
     will_returned_at = models.DateTimeField(null=False)

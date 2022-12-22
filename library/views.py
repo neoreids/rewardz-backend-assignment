@@ -3,11 +3,14 @@ from rest_framework.generics import ListCreateAPIView, GenericAPIView
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.models import User
+
 
 # Create your views here.
 from library.models import Books, BorrowedBooks
 from library.filters import ListBookFilter
-from library.serializers import PublicListBookSerializer, BorrowBookSerializerPost, ResponseBorrowedSerializer
+from library.serializers import PublicListBookSerializer, BorrowBookSerializerPost, ResponseBorrowedSerializer, \
+    UserListSerializers
 from library.request_object.borrow_request import BorrowRequest
 from library.logic.borrow import BorrowLogics
 from library.permissions import IsStudent, IsLibrarian
@@ -86,3 +89,13 @@ class ReturnBooksView(GenericAPIView):
         logics = BorrowLogics.return_book(request_object)
 
         return Response(logics)
+
+
+class StudentListView(ListCreateAPIView):
+    permission_classes = [IsAuthenticated, IsLibrarian]
+    queryset = User.objects.all()
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset().filter(is_staff=False).order_by("-id")
+        serializer = UserListSerializers(queryset, many=True)
+        return Response(serializer.data)

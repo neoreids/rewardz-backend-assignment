@@ -2,7 +2,7 @@ from rest_framework.serializers import ModelSerializer, SerializerMethodField, \
     Serializer, IntegerField, ListField
 
 from library.models import Books, BorrowedBooks
-
+from django.contrib.auth.models import User
 
 class BookBaseSerializer(ModelSerializer):
 
@@ -50,3 +50,22 @@ class ResponseBorrowedSerializer(ModelSerializer):
     class Meta:
         model = BorrowedBooks
         fields = ("user_id", "title", "author", "will_returned_at", "book_id")
+
+
+class UserListSerializers(ModelSerializer):
+
+    active_borrowed_books = SerializerMethodField()
+
+    def get_active_borrowed_books(self, obj: User):
+        queryset = obj.user_borrowed.filter(is_returned=False).order_by("-id").all()
+        return ResponseBorrowedSerializer(queryset, many=True).data
+
+    history_borrowed = SerializerMethodField()
+
+    def get_history_borrowed(self, obj: User):
+        queryset = obj.user_borrowed.order_by("-id").all()
+        return ResponseBorrowedSerializer(queryset, many=True).data
+
+    class Meta:
+        model = User
+        fields = ("id", "email", "username", "first_name", "last_name", "active_borrowed_books", "history_borrowed")
