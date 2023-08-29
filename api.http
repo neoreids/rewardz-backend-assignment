@@ -10,8 +10,9 @@ POST http://localhost:8000/api-auth
 
 
 ### Get list book endpoint
-### query params title for search by title and autho to search by author
-GET http://localhost:8000/library/books?title=minute
+### query params title for search by `title` and `author` to search by author
+GET http://localhost:8000/library/books
+
 
 
 ### Borrow book endpoint
@@ -57,7 +58,7 @@ Authorization: Bearer <token>
 ### list user endpoint
 ### should logged in as librarian
 GET http://localhost:8000/library/student-list
-Authorization: Bearer <token>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkzNDEyMTQxLCJpYXQiOjE2OTMzMjU3NDEsImp0aSI6IjI1ZDhhM2Q5MjMwMDQ3ZWJiOWExODUyZjE5NTdjN2I0IiwidXNlcl9pZCI6MX0.BQdNcs1ILFyHpofXkBdeFjV8SH7Strw2FLXBzk6_B8w
 
 
 ### get list borrow book by student side

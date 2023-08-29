@@ -8,6 +8,8 @@ services:
       - POSTGRES_USER=library_user
       - POSTGRES_PASSWORD=passworddblibrary
       - POSTGRES_DB=library
+#    ports:
+#    - 5432:5432
 
   library_app:
     container_name: library_app
